@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Restaurants — ESL Lesson</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-dark: #1a4a2e;
+    --green-mid: #2d7a4f;
+    --green-bright: #3fb06e;
+    --green-light: #a8e6c1;
+    --green-pale: #e8f7ef;
+    --accent-yellow: #f5c842;
+    --accent-orange: #f28c38;
+    --accent-red: #e05252;
+    --text-dark: #1a2e22;
+    --text-mid: #3d5c4a;
+    --text-light: #6b8c77;
+    --white: #ffffff;
+    --off-white: #f7fdf9;
+    --card-bg: #ffffff;
+    --border: #c6e8d4;
+    --shadow: 0 4px 24px rgba(26,74,46,0.10);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--off-white);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ========== HEADER ========== */
+  header {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, var(--green-bright) 100%);
+    color: white;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 200px; height: 200px;
+    background: rgba(168,230,193,0.10);
+    border-radius: 50%;
+  }
+  .header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 48px 24px 40px;
+    position: relative;
+    z-index: 1;
+  }
+  .header-tag {
+    display: inline-block;
+    background: var(--accent-yellow);
+    color: var(--green-dark);
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  header h1 span { color: var(--accent-yellow); }
+  header p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    max-width: 560px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+  }
+  .header-meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 30px;
+    padding: 6px 16px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+  .meta-pill .icon { font-size: 1.1em; }
+
+  /* ========== PROGRESS BAR ========== */
+  .progress-bar-wrap {
+    background: var(--green-dark);
+    padding: 12px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+  .progress-bar-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .progress-label {
+    color: var(--green-light);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    text-transform: uppercase;
+  }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green-bright), var(--accent-yellow));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+    width: 0%;
+  }
+  .progress-score {
+    color: var(--accent-yellow);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  /* ========== MAIN LAYOUT ========== */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px 60px;
+  }
+
+  /* ========== SECTION HEADERS ========== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 48px 0 20px;
+  }
+  .section-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: white;
+    background: var(--green-mid);
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-title-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--green-dark);
+  }
+  .section-title-block .timing {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+  }
+
+  /* ========== CARDS ========== */
+  .card {
+    background: var(--card-bg);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-title .emoji { font-size: 1.2em; }
+
+  /* ========== TASK 1: WARM UP - POLL ========== */
+  .poll-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .poll-option {
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    background: white;
+    user-select: none;
+  }
+  .poll-option:hover { border-color: var(--green-bright); background: var(--green-pale); transform: translateY(-2px); }
+  .poll-option.selected { border-color: var(--green-bright); background: var(--green-pale); color: var(--green-dark); }
+  .poll-option .poll-emoji { font-size: 1.8em; display: block; margin-bottom: 8px; }
+  .poll-result { margin-top: 14px; display: none; }
+  .poll-result.show { display: block; }
+  .result-bar-wrap { margin: 6px 0; }
+  .result-bar-label { font-size: 0.82rem; font-weight: 600; color: var(--text-mid); margin-bottom: 3px; display: flex; justify-content: space-between; }
+  .result-bar { height: 10px; background: var(--green-pale); border-radius: 5px; overflow: hidden; }
+  .result-bar-fill { height: 100%; background: var(--green-bright); border-radius: 5px; transition: width 1s ease; }
+
+  /* ========== TASK 2: VOCABULARY ========== */
+  .vocab-match-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 12px;
+  }
+  @media(max-width:600px){ .vocab-match-grid { grid-template-columns: 1fr; } }
+  .vocab-col-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 10px;
+  }
+  .vocab-word, .vocab-def {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 16px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    background: white;
+    user-select: none;
+    position: relative;
+  }
+  .vocab-word:hover, .vocab-def:hover { border-color: var(--green-bright); background: var(--green-pale); }
+  .vocab-word.active { border-color: var(--accent-yellow); background: #fffbe6; }
+  .vocab-word.matched, .vocab-def.matched { border-color: var(--green-bright); background: #e6f9f0; color: var(--green-dark); cursor: default; }
+  .vocab-word.wrong, .vocab-def.wrong { border-color: var(--accent-red); background: #ffeaea; animation: shake 0.3s; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-5px)} 75%{transform:translateX(5px)} }
+
+  /* ========== TASK 3: READING JIGSAW ========== */
+  .reading-text {
+    background: var(--green-pale);
+    border-left: 4px solid var(--green-bright);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 22px;
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-dark);
+    margin-bottom: 16px;
+  }
+  .reading-text strong { color: var(--green-dark); }
+  .highlight-word {
+    background: var(--accent-yellow);
+    border-radius: 3px;
+    padding: 1px 4px;
+    cursor: help;
+    position: relative;
+    font-weight: 700;
+  }
+  .tooltip {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green-dark);
+    color: white;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 8px;
+    white-space: nowrap;
+    z-index: 10;
+    pointer-events: none;
+  }
+  .tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--green-dark);
+  }
+  .highlight-word:hover .tooltip { display: block; }
+
+  /* ========== TASK 4: TRUE/FALSE/NOT GIVEN ========== */
+  .tf-item {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 12px;
+    background: white;
+  }
+  .tf-statement { font-size: 0.95rem; font-weight: 600; margin-bottom: 12px; color: var(--text-dark); }
+  .tf-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tf-btn {
+    padding: 7px 18px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.5px;
+  }
+  .tf-btn:hover { border-color: var(--green-mid); background: var(--green-pale); }
+  .tf-btn.correct { background: #e6f9f0; border-color: var(--green-bright); color: var(--green-dark); }
+  .tf-btn.wrong { background: #ffeaea; border-color: var(--accent-red); color: var(--accent-red); }
+  .tf-feedback { font-size: 0.83rem; margin-top: 8px; font-weight: 600; display: none; }
+  .tf-feedback.show { display: block; }
+  .tf-feedback.ok { color: var(--green-mid); }
+  .tf-feedback.bad { color: var(--accent-red); }
+
+  /* ========== TASK 5: SORTING / DRAG-DROP CATEGORIES ========== */
+  .sort-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .sort-zone {
+    border: 2px dashed var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    min-height: 140px;
+    transition: border-color 0.2s, background 0.2s;
+    background: white;
+  }
+  .sort-zone.drag-over { border-color: var(--green-bright); background: var(--green-pale); }
+  .sort-zone-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: white;
+    background: var(--green-mid);
+    border-radius: 8px;
+    padding: 5px 12px;
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+  .sort-zone-label.water { background: #2196a8; }
+  .sort-zone-label.waste { background: #7b5ea7; }
+  .sort-zone-label.energy { background: var(--accent-orange); }
+  .sort-zone-label.food { background: var(--green-mid); }
+  .sort-item {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 13px;
+    margin-bottom: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: grab;
+    transition: all 0.2s;
+    user-select: none;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+  }
+  .sort-item:active { cursor: grabbing; transform: scale(1.03); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+  .sort-item.dragging { opacity: 0.5; }
+  .sort-item.correct-place { border-color: var(--green-bright); background: #e6f9f0; }
+  .sort-item.wrong-place { border-color: var(--accent-red); background: #ffeaea; }
+  .sort-bank { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
+
+  /* ========== TASK 6: FILL IN THE BLANKS ========== */
+  .fill-text {
+    font-size: 0.97rem;
+    line-height: 2.2;
+    color: var(--text-dark);
+  }
+  .blank-input {
+    border: none;
+    border-bottom: 2.5px solid var(--green-bright);
+    background: transparent;
+    font-size: 0.97rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: var(--green-dark);
+    width: 110px;
+    text-align: center;
+    outline: none;
+    padding: 2px 4px;
+    transition: border-color 0.2s;
+  }
+  .blank-input:focus { border-color: var(--accent-yellow); }
+  .blank-input.correct { border-color: var(--green-bright); background: #e6f9f0; border-style: solid; border-radius: 4px; }
+  .blank-input.wrong { border-color: var(--accent-red); background: #ffeaea; border-style: solid; border-radius: 4px; }
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .word-chip {
+    background: var(--green-pale);
+    border: 1.5px solid var(--green-light);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--green-dark);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .word-chip:hover { background: var(--green-light); transform: translateY(-2px); }
+  .word-chip.used { opacity: 0.35; cursor: default; text-decoration: line-through; }
+
+  /* ========== TASK 7: QUIZ ========== */
+  .quiz-question {
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    background: white;
+  }
+  .quiz-q-text { font-size: 0.97rem; font-weight: 700; margin-bottom: 14px; color: var(--text-dark); }
+  .quiz-options { display: flex; flex-direction: column; gap: 8px; }
+  .quiz-opt {
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    background: white;
+    text-align: left;
+  }
+  .quiz-opt:hover { border-color: var(--green-bright); background: var(--green-pale); }
+  .quiz-opt.correct { border-color: var(--green-bright); background: #e6f9f0; color: var(--green-dark); }
+  .quiz-opt.wrong { border-color: var(--accent-red); background: #ffeaea; color: var(--accent-red); }
+  .quiz-opt.revealed { border-color: var(--green-bright); background: #e6f9f0; color: var(--green-dark); }
+  .quiz-feedback { font-size: 0.83rem; font-weight: 700; margin-top: 10px; display: none; }
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.ok { color: var(--green-mid); }
+  .quiz-feedback.bad { color: var(--accent-red); }
+
+  /* ========== TASK 8: SENTENCE BUILDER ========== */
+  .sentence-parts { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .sent-chip {
+    background: white;
+    border: 2px solid var(--green-light);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--green-dark);
+    user-select: none;
+  }
+  .sent-chip:hover { background: var(--green-pale); border-color: var(--green-bright); transform: translateY(-2px); }
+  .sent-chip.placed { opacity: 0.3; cursor: not-allowed; }
+  .sentence-area {
+    min-height: 52px;
+    border: 2px dashed var(--green-bright);
+    border-radius: 10px;
+    padding: 10px 14px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+    background: var(--green-pale);
+  }
+  .sentence-area .sent-chip {
+    background: var(--green-bright);
+    color: white;
+    border-color: transparent;
+    cursor: pointer;
+  }
+  .sentence-area .sent-chip:hover { background: var(--green-mid); transform: none; }
+  .placeholder-text { color: var(--text-light); font-size: 0.85rem; font-style: italic; }
+
+  /* ========== TASK 9: ROLEPLAY SCENARIO ========== */
+  .scenario-card {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .scenario-card::after {
+    content: '🍃';
+    position: absolute;
+    right: 20px; top: 20px;
+    font-size: 3rem;
+    opacity: 0.15;
+  }
+  .scenario-card h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; margin-bottom: 10px; }
+  .scenario-card p { font-size: 0.92rem; line-height: 1.6; opacity: 0.9; }
+  .role-badge {
+    display: inline-block;
+    background: var(--accent-yellow);
+    color: var(--green-dark);
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+  }
+  .phrase-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .phrase-chip {
+    background: white;
+    border: 1.5px solid var(--green-light);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--green-dark);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .phrase-chip:hover { background: var(--green-pale); transform: translateY(-2px); }
+  .phrase-chip.copied { background: var(--green-bright); color: white; border-color: var(--green-bright); }
+  .dialogue-box {
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 100px;
+    background: white;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text-mid);
+    margin-top: 12px;
+  }
+
+  /* ========== TASK 10: WRITING ========== */
+  .writing-prompt {
+    background: linear-gradient(135deg, #fffbe6 0%, #fff7d4 100%);
+    border: 2px solid var(--accent-yellow);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+    font-size: 0.93rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    line-height: 1.6;
+  }
+  .writing-prompt strong { color: var(--green-dark); }
+  textarea {
+    width: 100%;
+    border: 1.5px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.93rem;
+    line-height: 1.7;
+    color: var(--text-dark);
+    resize: vertical;
+    min-height: 130px;
+    transition: border-color 0.2s;
+    outline: none;
+    background: white;
+  }
+  textarea:focus { border-color: var(--green-bright); }
+  .word-counter { text-align: right; font-size: 0.78rem; color: var(--text-light); margin-top: 6px; font-weight: 600; }
+  .word-counter span { color: var(--green-mid); font-weight: 800; }
+  .checklist { margin-top: 14px; }
+  .checklist-item { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .checklist-item input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--green-bright); cursor: pointer; }
+  .checklist-item label { font-size: 0.87rem; font-weight: 600; color: var(--text-mid); cursor: pointer; }
+
+  /* ========== BUTTONS ========== */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 24px;
+    border-radius: 30px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--green-bright); color: white; }
+  .btn-primary:hover { background: var(--green-mid); transform: translateY(-2px); }
+  .btn-outline { background: transparent; color: var(--green-mid); border: 2px solid var(--green-mid); }
+  .btn-outline:hover { background: var(--green-pale); }
+  .btn-yellow { background: var(--accent-yellow); color: var(--green-dark); }
+  .btn-yellow:hover { background: #f0bb2a; transform: translateY(-2px); }
+
+  /* ========== SCORE FEEDBACK ========== */
+  .score-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-pale);
+    border: 1.5px solid var(--green-light);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--green-dark);
+    margin-top: 14px;
+    display: none;
+  }
+  .score-badge.show { display: inline-flex; }
+
+  /* ========== CELEBRATION ========== */
+  .celebration {
+    text-align: center;
+    padding: 40px 20px;
+    display: none;
+  }
+  .celebration.show { display: block; }
+  .celebration h2 { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--green-dark); margin: 16px 0 8px; }
+  .celebration p { color: var(--text-mid); font-size: 1rem; margin-bottom: 20px; }
+  .big-score { font-family: 'Syne', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--green-bright); }
+  .confetti-emoji { font-size: 2.5rem; margin-bottom: 12px; animation: bounce 0.6s infinite alternate; }
+  @keyframes bounce { from{transform:translateY(0)} to{transform:translateY(-12px)} }
+
+  /* ========== INFO BOX ========== */
+  .info-box {
+    background: var(--green-pale);
+    border: 1.5px solid var(--green-light);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 0.87rem;
+    font-weight: 600;
+    color: var(--text-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+  .info-box .info-icon { font-size: 1.2em; flex-shrink: 0; margin-top: 1px; }
+
+  /* ========== DIVIDER ========== */
+  .section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--green-light), transparent);
+    margin: 10px 0;
+    border: none;
+  }
+
+  /* ========== IMAGE PLACEHOLDER ========== */
+  .topic-img {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--green-mid), var(--green-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 5rem;
+    height: 180px;
+    margin-bottom: 20px;
+    letter-spacing: 12px;
+  }
+
+  /* Key facts bar */
+  .facts-bar {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .fact-item {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .fact-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--green-bright);
+    display: block;
+  }
+  .fact-label { font-size: 0.8rem; font-weight: 600; color: var(--text-light); margin-top: 4px; }
+
+  /* tabs */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab-btn {
+    padding: 8px 20px;
+    border-radius: 20px;
+    border: 2px solid var(--border);
+    background: white;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text-mid);
+  }
+  .tab-btn.active, .tab-btn:hover { background: var(--green-bright); color: white; border-color: var(--green-bright); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-tag">🌱 ESL Lesson · Chapter 6</div>
+    <h1>🍽️ <span>Green</span> Restaurants</h1>
+    <p>Learn how restaurants can protect our planet — and why YOU will need to know this for your future job!</p>
+    <div class="header-meta">
+      <div class="meta-pill"><span class="icon">⏱️</span> 90 minutes</div>
+      <div class="meta-pill"><span class="icon">👥</span> Ages 16+</div>
+      <div class="meta-pill"><span class="icon">🏆</span> 10 Tasks</div>
+      <div class="meta-pill"><span class="icon">🌍</span> English B1–B2</div>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS BAR -->
+<div class="progress-bar-wrap">
+  <div class="progress-bar-inner">
+    <div class="progress-label">Progress</div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-score">⭐ <span id="totalScore">0</span> pts</div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ======= SECTION 1: WARM UP ======= -->
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title-block">
+      <h2>🔥 Warm-Up — What Do You Think?</h2>
+      <div class="timing">⏱ 10 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">💡</span>
+    <span>Before we start, let's see what you already know! Answer these quick questions. There are no wrong answers here — just share your opinion!</span>
+  </div>
+
+  <!-- Poll 1 -->
+  <div class="card">
+    <div class="card-title"><span class="emoji">🍽️</span> How often do you think about the environment when eating at a restaurant?</div>
+    <div class="poll-grid" id="poll1">
+      <div class="poll-option" onclick="selectPoll('poll1',this)"><span class="poll-emoji">🤔</span>Never</div>
+      <div class="poll-option" onclick="selectPoll('poll1',this)"><span class="poll-emoji">🙂</span>Sometimes</div>
+      <div class="poll-option" onclick="selectPoll('poll1',this)"><span class="poll-emoji">✅</span>Often</div>
+      <div class="poll-option" onclick="selectPoll('poll1',this)"><span class="poll-emoji">🌱</span>Always</div>
+    </div>
+    <div class="poll-result" id="poll1-result">
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Never</span><span>18%</span></div><div class="result-bar"><div class="result-bar-fill" style="width:0" data-w="18"></div></div></div>
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Sometimes</span><span>45%</span></div><div class="result-bar"><div class="result-bar-fill" style="width:0" data-w="45"></div></div></div>
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Often</span><span>28%</span></div><div class="result-bar"><div class="result-bar-fill" style="width:0" data-w="28"></div></div></div>
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Always</span><span>9%</span></div><div class="result-bar"><div class="result-bar-fill" style="width:0" data-w="9"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Poll 2 -->
+  <div class="card">
+    <div class="card-title"><span class="emoji">♻️</span> Which green habit do you think is MOST important for a restaurant?</div>
+    <div class="poll-grid" id="poll2">
+      <div class="poll-option" onclick="selectPoll('poll2',this)"><span class="poll-emoji">💧</span>Saving water</div>
+      <div class="poll-option" onclick="selectPoll('poll2',this)"><span class="poll-emoji">🗑️</span>Reducing waste</div>
+      <div class="poll-option" onclick="selectPoll('poll2',this)"><span class="poll-emoji">⚡</span>Saving energy</div>
+      <div class="poll-option" onclick="selectPoll('poll2',this)"><span class="poll-emoji">🥦</span>Organic food</div>
+    </div>
+    <div class="poll-result" id="poll2-result">
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Saving water</span><span>22%</span></div><div class="result-bar"><div class="result-bar-fill" data-w="22"></div></div></div>
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Reducing waste</span><span>38%</span></div><div class="result-bar"><div class="result-bar-fill" data-w="38"></div></div></div>
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Saving energy</span><span>20%</span></div><div class="result-bar"><div class="result-bar-fill" data-w="20"></div></div></div>
+      <div class="result-bar-wrap"><div class="result-bar-label"><span>Organic food</span><span>20%</span></div><div class="result-bar"><div class="result-bar-fill" data-w="20"></div></div></div>
+    </div>
+  </div>
+
+  <div class="facts-bar">
+    <div class="fact-item"><span class="fact-num">150,000 lbs</span><div class="fact-label">Rubbish one US restaurant makes per year</div></div>
+    <div class="fact-item"><span class="fact-num">1,500 miles</span><div class="fact-label">Average distance food travels to reach your plate</div></div>
+    <div class="fact-item"><span class="fact-num">25%</span><div class="fact-label">Of food ordered in restaurants is thrown away</div></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 2: VOCABULARY ======= -->
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title-block">
+      <h2>📚 Vocabulary Match</h2>
+      <div class="timing">⏱ 10 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">🎯</span>
+    <span>Match each word on the left with its correct meaning on the right. Click a word first, then click the matching definition. Score: <strong>+5 points</strong> per correct match!</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🔤</span> Click a word, then click its definition</div>
+    <div class="vocab-match-grid">
+      <div>
+        <div class="vocab-col-label">Words</div>
+        <div class="vocab-word" data-id="1" onclick="selectVocab('word',this)">sustainable</div>
+        <div class="vocab-word" data-id="2" onclick="selectVocab('word',this)">compost</div>
+        <div class="vocab-word" data-id="3" onclick="selectVocab('word',this)">certify</div>
+        <div class="vocab-word" data-id="4" onclick="selectVocab('word',this)">pollutant</div>
+        <div class="vocab-word" data-id="5" onclick="selectVocab('word',this)">organic</div>
+        <div class="vocab-word" data-id="6" onclick="selectVocab('word',this)">efficiency</div>
+      </div>
+      <div>
+        <div class="vocab-col-label">Definitions</div>
+        <div class="vocab-def" data-id="3" onclick="selectVocab('def',this)">To officially say that something meets a standard</div>
+        <div class="vocab-def" data-id="1" onclick="selectVocab('def',this)">Able to continue without damaging the environment</div>
+        <div class="vocab-def" data-id="5" onclick="selectVocab('def',this)">Grown without using artificial chemicals</div>
+        <div class="vocab-def" data-id="6" onclick="selectVocab('def',this)">Using the least amount of energy or resources for best results</div>
+        <div class="vocab-def" data-id="2" onclick="selectVocab('def',this)">Decayed food and plant waste used to improve soil</div>
+        <div class="vocab-def" data-id="4" onclick="selectVocab('def',this)">A substance that makes air, water, or land dirty</div>
+      </div>
+    </div>
+    <div id="vocabScore" class="score-badge">✅ <span id="vocabScoreText">0/6 matched</span></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 3: READING ======= -->
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title-block">
+      <h2>📖 Reading — Green Restaurants</h2>
+      <div class="timing">⏱ 15 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">💡</span>
+    <span>Read the text carefully. Hover over <span class="highlight-word" style="position:relative;display:inline-block;">yellow words<span class="tooltip">This is a definition!</span></span> to see their meaning. Then answer the questions in Task 4.</span>
+  </div>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('reading','tab-habits')">Changing Habits</button>
+      <button class="tab-btn" onclick="showTab('reading','tab-food')">Raw Materials</button>
+      <button class="tab-btn" onclick="showTab('reading','tab-energy')">Energy</button>
+    </div>
+
+    <div id="tab-habits" class="tab-panel active">
+      <div class="reading-text">
+        <strong>Changing Habits</strong><br><br>
+        In order to achieve a <span class="highlight-word">Green Restaurant Certificate<span class="tooltip">An official document showing a restaurant is eco-friendly</span></span>, the owners must make changes in many areas.
+        First, <span class="highlight-word">water efficiency<span class="tooltip">Using water carefully so you don't waste any</span></span> is important.
+        By installing <span class="highlight-word">low flush toilets<span class="tooltip">Toilets that use less water per flush</span></span>, dishwashers that use less water, and taps with a low flow rate, restaurants can save thousands of litres of water.
+        Second, <span class="highlight-word">waste reduction<span class="tooltip">Using less materials and throwing away less rubbish</span></span> is also of great importance.
+        In the USA, for example, an average restaurant can produce 150,000 pounds (70,000 kg) of rubbish each year.
+        By <span class="highlight-word">recycling<span class="tooltip">Processing used materials to make new products</span></span>, reusing or <span class="highlight-word">composting<span class="tooltip">Turning food waste into fertiliser for soil</span></span> rubbish and leftovers, restaurants will be able to reduce their waste considerably.
+        Finally, a third focus area is reducing <span class="highlight-word">water pollution<span class="tooltip">When harmful substances get into water</span></span>.
+        Chemical waste can be avoided if soap and cleaning products are replaced with <span class="highlight-word">eco-friendly alternatives<span class="tooltip">Products that don't damage the environment</span></span>.
+      </div>
+    </div>
+
+    <div id="tab-food" class="tab-panel">
+      <div class="reading-text">
+        <strong>Raw Materials</strong><br><br>
+        Going green is also about what is on the <span class="highlight-word">menu<span class="tooltip">The list of food and drink in a restaurant</span></span>. Eco-friendly restaurants serve <span class="highlight-word">organic<span class="tooltip">Food grown without chemicals or artificial fertilisers</span></span> and sustainable food.
+        Focus areas here are meat production, <span class="highlight-word">fishery depletion<span class="tooltip">When too many fish are caught and fish numbers go down</span></span>, use of <span class="highlight-word">pesticides<span class="tooltip">Chemicals used to kill insects that damage plants</span></span> in agriculture, and <span class="highlight-word">transport of food<span class="tooltip">Moving food from where it is grown to the restaurant</span></span>.
+        For example, meat should be <span class="highlight-word">animal welfare approved<span class="tooltip">Means animals are treated well and not given hormones</span></span>. This means that no hormones or antibiotics have been used on the animals, and that chicken and eggs are <span class="highlight-word">cage free<span class="tooltip">Animals are not kept in small cages</span></span>.
+        Finally, it is estimated that the average food product travels 1,500 miles to get from farm to plate. Choosing <span class="highlight-word">locally-grown food<span class="tooltip">Food produced near the restaurant, not transported far</span></span> means less pollution and less energy used for transport and refrigeration during transport.
+      </div>
+    </div>
+
+    <div id="tab-energy" class="tab-panel">
+      <div class="reading-text">
+        <strong>Energy</strong><br><br>
+        Another important <span class="highlight-word">criterion<span class="tooltip">A standard or rule used for making a judgement</span></span> for certification of green restaurants is to reduce the use of energy. Most hotels and restaurants use a lot of electricity for heating, cooling, <span class="highlight-word">ventilation<span class="tooltip">The system that brings fresh air into a building</span></span>, water heating and lighting.
+        Choosing <span class="highlight-word">clean sources of energy<span class="tooltip">Energy from wind, sun or water — not oil or gas</span></span> where possible and installing more <span class="highlight-word">energy-efficient equipment<span class="tooltip">Machines that do the same job using less electricity</span></span> are both important steps towards a green restaurant.
+        <span class="highlight-word">Occupancy sensors<span class="tooltip">Devices that turn lights off when no one is in the room</span></span> in toilets and offices, daylight sensors in dining rooms, <span class="highlight-word">LED lamps<span class="tooltip">Light bulbs that use much less electricity than old ones</span></span>, and <span class="highlight-word">convection ovens<span class="tooltip">Ovens that use a fan to cook food faster and use less energy</span></span> are examples of smart investments. The basic rules are quite simply: <em>"shut it off, turn it down and keep it clean."</em>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 4: TRUE/FALSE/NOT GIVEN ======= -->
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title-block">
+      <h2>✅ True, False, or Not Given?</h2>
+      <div class="timing">⏱ 10 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">📝</span>
+    <span><strong>True</strong> = The text says this. <strong>False</strong> = The text says the opposite. <strong>Not Given</strong> = The text doesn't mention this. Score: <strong>+4 points</strong> each!</span>
+  </div>
+
+  <div id="tfSection">
+    <div class="tf-item" data-answer="T">
+      <div class="tf-statement">1. An average US restaurant produces 70,000 kg of rubbish per year.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="checkTF(this,'T','T')">TRUE</button>
+        <button class="tf-btn" onclick="checkTF(this,'F','T')">FALSE</button>
+        <button class="tf-btn" onclick="checkTF(this,'NG','T')">NOT GIVEN</button>
+      </div>
+      <div class="tf-feedback"></div>
+    </div>
+    <div class="tf-item" data-answer="F">
+      <div class="tf-statement">2. Restaurants should use more chemical cleaning products to stay clean.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="checkTF(this,'T','F')">TRUE</button>
+        <button class="tf-btn" onclick="checkTF(this,'F','F')">FALSE</button>
+        <button class="tf-btn" onclick="checkTF(this,'NG','F')">NOT GIVEN</button>
+      </div>
+      <div class="tf-feedback"></div>
+    </div>
+    <div class="tf-item" data-answer="NG">
+      <div class="tf-statement">3. Green restaurants are always more expensive than normal restaurants.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="checkTF(this,'T','NG')">TRUE</button>
+        <button class="tf-btn" onclick="checkTF(this,'F','NG')">FALSE</button>
+        <button class="tf-btn" onclick="checkTF(this,'NG','NG')">NOT GIVEN</button>
+      </div>
+      <div class="tf-feedback"></div>
+    </div>
+    <div class="tf-item" data-answer="T">
+      <div class="tf-statement">4. Food products travel an average of 1,500 miles from farm to plate.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="checkTF(this,'T','T')">TRUE</button>
+        <button class="tf-btn" onclick="checkTF(this,'F','T')">FALSE</button>
+        <button class="tf-btn" onclick="checkTF(this,'NG','T')">NOT GIVEN</button>
+      </div>
+      <div class="tf-feedback"></div>
+    </div>
+    <div class="tf-item" data-answer="F">
+      <div class="tf-statement">5. Occupancy sensors keep lights ON all the time in empty rooms.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="checkTF(this,'T','F')">TRUE</button>
+        <button class="tf-btn" onclick="checkTF(this,'F','F')">FALSE</button>
+        <button class="tf-btn" onclick="checkTF(this,'NG','F')">NOT GIVEN</button>
+      </div>
+      <div class="tf-feedback"></div>
+    </div>
+    <div class="tf-item" data-answer="NG">
+      <div class="tf-statement">6. The Green Restaurant Certificate was first created in Norway.</div>
+      <div class="tf-buttons">
+        <button class="tf-btn" onclick="checkTF(this,'T','NG')">TRUE</button>
+        <button class="tf-btn" onclick="checkTF(this,'F','NG')">FALSE</button>
+        <button class="tf-btn" onclick="checkTF(this,'NG','NG')">NOT GIVEN</button>
+      </div>
+      <div class="tf-feedback"></div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 5: SORTING ======= -->
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title-block">
+      <h2>🗂️ Sort the Green Actions</h2>
+      <div class="timing">⏱ 10 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">↔️</span>
+    <span>Drag and drop each action into the correct category. You can also click an action and then click a category box. Score: <strong>+3 points</strong> per correct answer!</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🏷️</span> Actions to sort:</div>
+    <div class="sort-bank" id="sortBank">
+      <div class="sort-item" draggable="true" data-cat="water" ondragstart="dragStart(event)" onclick="clickSort(this)">Low flush toilets</div>
+      <div class="sort-item" draggable="true" data-cat="waste" ondragstart="dragStart(event)" onclick="clickSort(this)">Recycling bottles & tins</div>
+      <div class="sort-item" draggable="true" data-cat="energy" ondragstart="dragStart(event)" onclick="clickSort(this)">LED lamps</div>
+      <div class="sort-item" draggable="true" data-cat="food" ondragstart="dragStart(event)" onclick="clickSort(this)">Cage-free chicken eggs</div>
+      <div class="sort-item" draggable="true" data-cat="water" ondragstart="dragStart(event)" onclick="clickSort(this)">Taps with low flow rate</div>
+      <div class="sort-item" draggable="true" data-cat="waste" ondragstart="dragStart(event)" onclick="clickSort(this)">Composting food leftovers</div>
+      <div class="sort-item" draggable="true" data-cat="energy" ondragstart="dragStart(event)" onclick="clickSort(this)">Convection ovens</div>
+      <div class="sort-item" draggable="true" data-cat="food" ondragstart="dragStart(event)" onclick="clickSort(this)">Locally-grown vegetables</div>
+      <div class="sort-item" draggable="true" data-cat="water" ondragstart="dragStart(event)" onclick="clickSort(this)">Grease separators in sinks</div>
+      <div class="sort-item" draggable="true" data-cat="energy" ondragstart="dragStart(event)" onclick="clickSort(this)">Occupancy sensors</div>
+      <div class="sort-item" draggable="true" data-cat="waste" ondragstart="dragStart(event)" onclick="clickSort(this)">Recycled paper menus</div>
+      <div class="sort-item" draggable="true" data-cat="food" ondragstart="dragStart(event)" onclick="clickSort(this)">Organic meat (no hormones)</div>
+    </div>
+
+    <div class="sort-container">
+      <div class="sort-zone" id="zone-water" ondragover="dragOver(event)" ondrop="dropItem(event,'water')" onclick="clickZone('water')">
+        <div class="sort-zone-label water">💧 Water</div>
+      </div>
+      <div class="sort-zone" id="zone-waste" ondragover="dragOver(event)" ondrop="dropItem(event,'waste')" onclick="clickZone('waste')">
+        <div class="sort-zone-label waste">♻️ Waste</div>
+      </div>
+      <div class="sort-zone" id="zone-energy" ondragover="dragOver(event)" ondrop="dropItem(event,'energy')" onclick="clickZone('energy')">
+        <div class="sort-zone-label energy">⚡ Energy</div>
+      </div>
+      <div class="sort-zone" id="zone-food" ondragover="dragOver(event)" ondrop="dropItem(event,'food')" onclick="clickZone('food')">
+        <div class="sort-zone-label food">🥦 Food</div>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="checkSort()">✅ Check My Sorting</button>
+    <div id="sortFeedback" style="margin-top:12px;font-weight:700;font-size:0.9rem;display:none;"></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 6: FILL IN BLANKS ======= -->
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title-block">
+      <h2>✏️ Fill in the Blanks</h2>
+      <div class="timing">⏱ 8 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">💬</span>
+    <span>Click a word from the box below, then click the blank where it belongs. Each correct answer is worth <strong>+4 points</strong>!</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">🧩</span> Word Bank — click a word, then click a blank</div>
+    <div class="word-bank">
+      <div class="word-chip" data-word="sustainable" onclick="selectWord(this)">sustainable</div>
+      <div class="word-chip" data-word="organic" onclick="selectWord(this)">organic</div>
+      <div class="word-chip" data-word="certified" onclick="selectWord(this)">certified</div>
+      <div class="word-chip" data-word="recycling" onclick="selectWord(this)">recycling</div>
+      <div class="word-chip" data-word="locally" onclick="selectWord(this)">locally</div>
+      <div class="word-chip" data-word="efficient" onclick="selectWord(this)">efficient</div>
+    </div>
+    <div class="fill-text">
+      <p>A restaurant that wants to be <input class="blank-input" data-answer="certified" onclick="fillBlank(this)" readonly placeholder="___"> as a green restaurant must change many habits.</p>
+      <br>
+      <p>First, it should use <input class="blank-input" data-answer="efficient" onclick="fillBlank(this)" readonly placeholder="___"> dishwashers and taps to save water.</p>
+      <br>
+      <p>It must also use <input class="blank-input" data-answer="recycling" onclick="fillBlank(this)" readonly placeholder="___"> bins for bottles, tins, and paper.</p>
+      <br>
+      <p>The food on the menu should be <input class="blank-input" data-answer="organic" onclick="fillBlank(this)" readonly placeholder="___">, with no harmful chemicals used in farming.</p>
+      <br>
+      <p>Buying food that is grown <input class="blank-input" data-answer="locally" onclick="fillBlank(this)" readonly placeholder="___"> reduces the need for long-distance transport.</p>
+      <br>
+      <p>These changes help make the restaurant industry more <input class="blank-input" data-answer="sustainable" onclick="fillBlank(this)" readonly placeholder="___"> for the future.</p>
+    </div>
+    <button class="btn btn-outline" style="margin-top:16px" onclick="checkBlanks()">✅ Check Answers</button>
+    <button class="btn btn-outline" style="margin-top:16px;margin-left:8px" onclick="resetBlanks()">🔄 Reset</button>
+    <div id="blankFeedback" style="margin-top:10px;font-size:0.87rem;font-weight:700;display:none;"></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 7: QUIZ ======= -->
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title-block">
+      <h2>🧠 Comprehension Quiz</h2>
+      <div class="timing">⏱ 10 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">🎯</span>
+    <span>Choose the best answer for each question. Score: <strong>+5 points</strong> per correct answer!</span>
+  </div>
+
+  <div class="quiz-question">
+    <div class="quiz-q-text">1. What is the main purpose of a Green Restaurant Certificate?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','The text says it is about environmental sustainability, not just marketing.')">To advertise the restaurant to more customers</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'correct','✅ Correct! It officially confirms that a restaurant meets environmental standards.')">To officially confirm that a restaurant meets environmental standards</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','The text does not say the certificate guarantees better tasting food.')">To guarantee that the food tastes better</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="quiz-question">
+    <div class="quiz-q-text">2. What does "animal welfare approved" mean for meat?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','The text says it is about no hormones, not about the price.')">The animals are more expensive to buy</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','\"Organic\" relates to farming methods, not specifically animal welfare.')">The meat is always organic</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'correct','✅ Correct! Animal welfare approved means no hormones, animals are cage-free and fed naturally.')">No hormones or antibiotics were used, and animals were cage-free and fed naturally</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="quiz-question">
+    <div class="quiz-q-text">3. Which rule helps restaurants save energy every day?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this,'correct','✅ Correct! The text says the basic rule is: shut it off, turn it down and keep it clean.')">Shut it off, turn it down and keep it clean</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','This is not mentioned in the text as an energy-saving rule.')">Use as much electricity as possible during the day</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','Buying local food reduces transport emissions but is not the energy-saving rule described.')">Only buy food from local farmers</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="quiz-question">
+    <div class="quiz-q-text">4. Why does a green restaurant choose locally-grown food?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','The text mentions less transport energy, not cheaper prices.')">Because it is cheaper to buy</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'correct','✅ Correct! Locally-grown food means less transport = less pollution and less energy used for refrigeration.')">To reduce pollution and energy used in transport and refrigeration</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','The text does not say local food is fresher, only that it uses less transport energy.')">Because local food is always fresher</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <div class="quiz-question">
+    <div class="quiz-q-text">5. How can restaurants reduce water pollution?</div>
+    <div class="quiz-options">
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','LED lamps save energy, not water.')">By installing LED lamps</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'wrong','Composting helps reduce waste, not water pollution.')">By composting all food waste</button>
+      <button class="quiz-opt" onclick="checkQuiz(this,'correct','✅ Correct! Replacing chemical cleaning products with eco-friendly ones avoids chemical waste going into water.')">By replacing chemical cleaning products with eco-friendly alternatives and using grease separators</button>
+    </div>
+    <div class="quiz-feedback"></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 8: SENTENCE BUILDER ======= -->
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title-block">
+      <h2>🔨 Sentence Builder</h2>
+      <div class="timing">⏱ 8 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">🔤</span>
+    <span>Put the words in the correct order to make a sentence. Click words to add them to the sentence. Click a word in the sentence to remove it. Score: <strong>+5 points</strong> per correct sentence!</span>
+  </div>
+
+  <div class="card" id="sbCard">
+    <div class="card-title"><span class="emoji">📌</span> Sentence <span id="sbNum">1</span> of 4</div>
+    <div id="sbParts" class="sentence-parts"></div>
+    <div class="sentence-area" id="sbArea"><span class="placeholder-text" id="sbPlaceholder">Click words above to build your sentence...</span></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;">
+      <button class="btn btn-primary" onclick="checkSentence()">✅ Check</button>
+      <button class="btn btn-outline" onclick="resetSentence()">🔄 Reset</button>
+      <button class="btn btn-yellow" onclick="nextSentence()" id="sbNext" style="display:none">Next ➡️</button>
+    </div>
+    <div id="sbFeedback" style="margin-top:10px;font-size:0.87rem;font-weight:700;display:none;"></div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 9: ROLEPLAY ======= -->
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div class="section-title-block">
+      <h2>🎭 Restaurant Roleplay</h2>
+      <div class="timing">⏱ 12 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">🌟</span>
+    <span>Practice speaking skills! Work with a partner. Choose your role and use the phrases below to help. If you are alone, write what you would say!</span>
+  </div>
+
+  <div class="scenario-card">
+    <h3>📋 Scenario: The Restaurant Manager Meeting</h3>
+    <p>You are having a staff meeting at your restaurant. The manager wants to make the restaurant "green". Your team has to discuss changes and who will be responsible for each one.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="emoji">👤</span> Choose your role — click useful phrases to copy them</div>
+    <div style="margin-bottom:16px;">
+      <span class="role-badge">🧑‍💼 MANAGER</span>
+      <span class="role-badge">🍳 HEAD CHEF</span>
+      <span class="role-badge">🧹 CLEANING STAFF</span>
+      <span class="role-badge">🛒 BUYER</span>
+    </div>
+    <div style="margin-bottom:18px;">
+      <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:1px;color:var(--text-light);text-transform:uppercase;margin-bottom:8px;">Useful phrases — click to copy:</div>
+      <div class="phrase-bank">
+        <div class="phrase-chip" onclick="copyPhrase(this)">I think we should...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">One idea is to install...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">We could reduce waste by...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">In my department, I will...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">The biggest challenge is...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">I agree that we should...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">What about changing to...?</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">This will help because...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">I'm responsible for...</div>
+        <div class="phrase-chip" onclick="copyPhrase(this)">Could we start with...?</div>
+      </div>
+    </div>
+    <div style="font-family:'Syne',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:1px;color:var(--text-light);text-transform:uppercase;margin-bottom:8px;">Write your part of the dialogue here:</div>
+    <textarea id="roleplayText" placeholder="Example: 'Good morning everyone. I think we should start by installing low flush toilets in all the bathrooms because...'" oninput="countWords('roleplayText','roleplayCount')"></textarea>
+    <div class="word-counter">Words: <span id="roleplayCount">0</span></div>
+    <div style="margin-top:14px;">
+      <strong style="font-size:0.87rem;color:var(--green-dark);">📌 Discussion tasks:</strong>
+      <div class="checklist" style="margin-top:8px;">
+        <div class="checklist-item"><input type="checkbox" id="r1"><label for="r1">Discuss at least 3 green changes for the restaurant</label></div>
+        <div class="checklist-item"><input type="checkbox" id="r2"><label for="r2">Decide who is responsible for each change</label></div>
+        <div class="checklist-item"><input type="checkbox" id="r3"><label for="r3">Give a reason WHY each change is important</label></div>
+        <div class="checklist-item"><input type="checkbox" id="r4"><label for="r4">Use at least 5 vocabulary words from this lesson</label></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ======= SECTION 10: WRITING ======= -->
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title-block">
+      <h2>✍️ Writing Task</h2>
+      <div class="timing">⏱ 12 minutes</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <span class="info-icon">📝</span>
+    <span>Write your response using vocabulary and ideas from the lesson. Use the checklist to make sure your writing is complete!</span>
+  </div>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('write','write-tab1')">Option A: Email</button>
+      <button class="tab-btn" onclick="showTab('write','write-tab2')">Option B: Review</button>
+    </div>
+
+    <div id="write-tab1" class="tab-panel active">
+      <div class="writing-prompt">
+        <strong>📧 You are a new chef at a restaurant. Write a short email to your manager (80–100 words).</strong><br>
+        Suggest <em>three specific changes</em> the restaurant can make to become more environmentally friendly. Explain WHY each change is important. Use vocabulary from this lesson.
+      </div>
+      <textarea id="writingA" placeholder="Dear [Manager's name],&#10;&#10;I am writing to suggest some changes that could make our restaurant more environmentally friendly.&#10;&#10;First, I think we should..." oninput="countWords('writingA','countA')"></textarea>
+      <div class="word-counter">Words: <span id="countA">0</span> / 80–100</div>
+      <div class="checklist">
+        <div class="checklist-item"><input type="checkbox" id="ca1"><label for="ca1">I have a greeting and a clear introduction</label></div>
+        <div class="checklist-item"><input type="checkbox" id="ca2"><label for="ca2">I have suggested three specific changes</label></div>
+        <div class="checklist-item"><input type="checkbox" id="ca3"><label for="ca3">I have explained why each change helps the environment</label></div>
+        <div class="checklist-item"><input type="checkbox" id="ca4"><label for="ca4">I used at least 4 vocabulary words from this lesson</label></div>
+        <div class="checklist-item"><input type="checkbox" id="ca5"><label for="ca5">I have a professional closing (e.g. Best regards, ...)</label></div>
+      </div>
+    </div>
+
+    <div id="write-tab2" class="tab-panel">
+      <div class="writing-prompt">
+        <strong>⭐ You visited a Green Restaurant. Write a review for a food website (80–100 words).</strong><br>
+        Describe what made it "green". Include your opinion — was it a good experience? Would you recommend it? Use vocabulary from this lesson.
+      </div>
+      <textarea id="writingB" placeholder="I recently visited a green restaurant called... and I was really impressed by..." oninput="countWords('writingB','countB')"></textarea>
+      <div class="word-counter">Words: <span id="countB">0</span> / 80–100</div>
+      <div class="checklist">
+        <div class="checklist-item"><input type="checkbox" id="cb1"><label for="cb1">I described at least 2 eco-friendly features I noticed</label></div>
+        <div class="checklist-item"><input type="checkbox" id="cb2"><label for="cb2">I included my personal opinion about the restaurant</label></div>
+        <div class="checklist-item"><input type="checkbox" id="cb3"><label for="cb3">I said whether I would recommend it and why</label></div>
+        <div class="checklist-item"><input type="checkbox" id="cb4"><label for="cb4">I used at least 4 vocabulary words from this lesson</label></div>
+        <div class="checklist-item"><input type="checkbox" id="cb5"><label for="cb5">My writing is between 80–100 words</label></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= FINAL CELEBRATION ======= -->
+  <div class="card">
+    <div style="text-align:center;padding:10px 0;">
+      <button class="btn btn-yellow" style="font-size:1rem;padding:14px 36px;" onclick="showCelebration()">🏁 Finish Lesson &amp; See My Score!</button>
+    </div>
+  </div>
+
+  <div class="card celebration" id="celebration">
+    <div class="confetti-emoji">🎉</div>
+    <h2>Lesson Complete!</h2>
+    <p>You've finished the Green Restaurants lesson. Here is your total score:</p>
+    <div class="big-score">⭐ <span id="finalScore">0</span> pts</div>
+    <p style="margin-top:16px;font-size:0.9rem;color:var(--text-light);">Keep practising these words and ideas — you'll need them in your future career in restaurants! 🌱</p>
+    <div style="margin-top:24px;background:var(--green-pale);border-radius:12px;padding:20px;text-align:left;">
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:0.85rem;color:var(--green-dark);margin-bottom:12px;">🌿 KEY WORDS TO REMEMBER:</div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;">
+        <span class="word-chip">sustainable</span>
+        <span class="word-chip">compost</span>
+        <span class="word-chip">organic</span>
+        <span class="word-chip">certify</span>
+        <span class="word-chip">pollutant</span>
+        <span class="word-chip">efficiency</span>
+        <span class="word-chip">recycling</span>
+        <span class="word-chip">eco-friendly</span>
+        <span class="word-chip">locally-grown</span>
+        <span class="word-chip">cage-free</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<script>
+// ===== GLOBAL SCORE =====
+let totalScore = 0;
+const tasksDone = {};
+function addScore(task, pts) {
+  if (tasksDone[task]) return;
+  tasksDone[task] = true;
+  totalScore += pts;
+  document.getElementById('totalScore').textContent = totalScore;
+  const pct = Math.min(100, (totalScore / 120) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// ===== POLLS =====
+function selectPoll(id, el) {
+  const container = document.getElementById(id);
+  container.querySelectorAll('.poll-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  const result = document.getElementById(id + '-result');
+  result.classList.add('show');
+  result.querySelectorAll('.result-bar-fill').forEach(b => {
+    b.style.width = b.dataset.w + '%';
+  });
+  addScore('poll_' + id, 2);
+}
+
+// ===== VOCABULARY MATCH =====
+let selectedWord = null, selectedDef = null;
+let vocabCorrect = 0;
+function selectVocab(type, el) {
+  if (el.classList.contains('matched')) return;
+  if (type === 'word') {
+    document.querySelectorAll('.vocab-word').forEach(w => w.classList.remove('active'));
+    el.classList.add('active');
+    selectedWord = el;
+  } else {
+    selectedDef = el;
+  }
+  if (selectedWord && selectedDef) {
+    if (selectedWord.dataset.id === selectedDef.dataset.id) {
+      selectedWord.classList.remove('active');
+      selectedWord.classList.add('matched');
+      selectedDef.classList.add('matched');
+      vocabCorrect++;
+      addScore('vocab_' + selectedWord.dataset.id, 5);
+      const sb = document.getElementById('vocabScore');
+      sb.classList.add('show');
+      document.getElementById('vocabScoreText').textContent = vocabCorrect + '/6 matched';
+    } else {
+      selectedWord.classList.add('wrong');
+      selectedDef.classList.add('wrong');
+      setTimeout(() => {
+        selectedWord.classList.remove('wrong', 'active');
+        selectedDef.classList.remove('wrong');
+      }, 500);
+    }
+    selectedWord = null; selectedDef = null;
+  }
+}
+
+// ===== TABS =====
+function showTab(group, id) {
+  document.querySelectorAll('#' + group + ' .tab-panel, [id^="' + (group === 'reading' ? 'tab-' : 'write-tab') + '"]').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  // update buttons
+  const card = document.getElementById(id).closest('.card');
+  card.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+// ===== TRUE / FALSE =====
+function checkTF(btn, choice, correct) {
+  const item = btn.closest('.tf-item');
+  if (item.querySelector('.tf-btn.correct') || item.querySelector('.tf-btn.wrong')) return;
+  const feedback = item.querySelector('.tf-feedback');
+  if (choice === correct) {
+    btn.classList.add('correct');
+    feedback.textContent = '✅ Correct!';
+    feedback.className = 'tf-feedback show ok';
+    addScore('tf_' + correct + '_' + btn.textContent, 4);
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ Not quite — the answer is ' + correct + '. Read the text again!';
+    feedback.className = 'tf-feedback show bad';
+    // reveal correct
+    item.querySelectorAll('.tf-btn').forEach(b => {
+      if (b.textContent === correct) b.classList.add('revealed');
+    });
+  }
+}
+
+// ===== SORTING =====
+let draggedItem = null, clickedSortItem = null;
+function dragStart(e) { draggedItem = e.target; e.target.classList.add('dragging'); }
+function dragOver(e) { e.preventDefault(); e.currentTarget.classList.add('drag-over'); }
+function dropItem(e, cat) {
+  e.preventDefault();
+  e.currentTarget.classList.remove('drag-over');
+  if (draggedItem) { e.currentTarget.appendChild(draggedItem); draggedItem.classList.remove('dragging'); draggedItem = null; }
+}
+function clickSort(el) {
+  if (clickedSortItem === el) { clickedSortItem = null; el.style.outline = ''; return; }
+  if (clickedSortItem) clickedSortItem.style.outline = '';
+  clickedSortItem = el;
+  el.style.outline = '2.5px solid var(--accent-yellow)';
+}
+function clickZone(cat) {
+  if (clickedSortItem) {
+    document.getElementById('zone-' + cat).appendChild(clickedSortItem);
+    clickedSortItem.style.outline = '';
+    clickedSortItem = null;
+  }
+}
+function checkSort() {
+  let correct = 0, total = 0;
+  ['water','waste','energy','food'].forEach(cat => {
+    const zone = document.getElementById('zone-' + cat);
+    zone.querySelectorAll('.sort-item').forEach(item => {
+      total++;
+      if (item.dataset.cat === cat) { item.classList.add('correct-place'); item.classList.remove('wrong-place'); correct++; addScore('sort_' + item.textContent.trim().substring(0,8), 3); }
+      else { item.classList.add('wrong-place'); item.classList.remove('correct-place'); }
+    });
+  });
+  const fb = document.getElementById('sortFeedback');
+  fb.style.display = 'block';
+  fb.style.color = correct === total ? 'var(--green-mid)' : 'var(--accent-orange)';
+  fb.textContent = correct === total ? `🎉 Perfect! All ${total} items sorted correctly!` : `You got ${correct} out of ${total} correct. Try moving the red ones!`;
+}
+
+// ===== FILL IN BLANKS =====
+let activeWordChip = null;
+function selectWord(chip) {
+  if (chip.classList.contains('used')) return;
+  document.querySelectorAll('.word-chip').forEach(c => c.style.outline = '');
+  activeWordChip = chip;
+  chip.style.outline = '2.5px solid var(--accent-yellow)';
+}
+function fillBlank(input) {
+  if (!activeWordChip) return;
+  input.value = activeWordChip.dataset.word;
+  input.style.borderColor = '';
+  input.classList.remove('correct','wrong');
+  activeWordChip.style.outline = '';
+  activeWordChip = null;
+}
+function checkBlanks() {
+  const inputs = document.querySelectorAll('.blank-input');
+  let correct = 0;
+  inputs.forEach(inp => {
+    inp.classList.remove('correct','wrong');
+    if (inp.value.trim().toLowerCase() === inp.dataset.answer) { inp.classList.add('correct'); correct++; addScore('blank_'+inp.dataset.answer, 4); }
+    else { inp.classList.add('wrong'); }
+  });
+  // mark used chips
+  document.querySelectorAll('.word-chip').forEach(c => {
+    const used = [...inputs].some(i => i.value === c.dataset.word && i.classList.contains('correct'));
+    if (used) c.classList.add('used');
+  });
+  const fb = document.getElementById('blankFeedback');
+  fb.style.display = 'block';
+  fb.style.color = correct === inputs.length ? 'var(--green-mid)' : 'var(--accent-orange)';
+  fb.textContent = correct === inputs.length ? '🎉 All correct!' : `${correct}/${inputs.length} correct. Check the red ones!`;
+}
+function resetBlanks() {
+  document.querySelectorAll('.blank-input').forEach(inp => { inp.value = ''; inp.classList.remove('correct','wrong'); });
+  document.querySelectorAll('.word-chip').forEach(c => c.classList.remove('used'));
+  document.getElementById('blankFeedback').style.display = 'none';
+  activeWordChip = null;
+}
+
+// ===== QUIZ =====
+function checkQuiz(btn, result, msg) {
+  const q = btn.closest('.quiz-question');
+  if (q.querySelector('.correct')) return;
+  const feedback = q.querySelector('.quiz-feedback');
+  if (result === 'correct') {
+    btn.classList.add('correct');
+    feedback.textContent = msg;
+    feedback.className = 'quiz-feedback show ok';
+    addScore('quiz_' + btn.textContent.trim().substring(0,10), 5);
+  } else {
+    btn.classList.add('wrong');
+    feedback.textContent = '❌ ' + msg;
+    feedback.className = 'quiz-feedback show bad';
+    q.querySelectorAll('.quiz-opt').forEach(o => { if (!o.classList.contains('wrong') && !o.classList.contains('correct')) { /* leave */ } });
+  }
+}
+
+// ===== SENTENCE BUILDER =====
+const sentences = [
+  { parts: ['Restaurants', 'can', 'save', 'water', 'by', 'installing', 'low flush toilets'], answer: ['Restaurants','can','save','water','by','installing','low flush toilets'] },
+  { parts: ['Locally-grown', 'food', 'reduces', 'pollution', 'from', 'transport'], answer: ['Locally-grown','food','reduces','pollution','from','transport'] },
+  { parts: ['LED lamps', 'use', 'less', 'electricity', 'than', 'old', 'light bulbs'], answer: ['LED lamps','use','less','electricity','than','old','light bulbs'] },
+  { parts: ['Animal welfare', 'approved', 'meat', 'contains', 'no', 'hormones', 'or antibiotics'], answer: ['Animal welfare','approved','meat','contains','no','hormones','or antibiotics'] }
+];
+let sbIndex = 0, sbCurrent = [], sbPlaced = [];
+function loadSentence() {
+  sbCurrent = [...sentences[sbIndex].parts].sort(() => Math.random() - 0.5);
+  sbPlaced = [];
+  renderSentenceBuilder();
+}
+function renderSentenceBuilder() {
+  document.getElementById('sbNum').textContent = sbIndex + 1;
+  const parts = document.getElementById('sbParts');
+  parts.innerHTML = '';
+  sbCurrent.forEach((w, i) => {
+    const chip = document.createElement('div');
+    chip.className = 'sent-chip' + (sbPlaced.includes(w + '_' + i) ? ' placed' : '');
+    chip.textContent = w;
+    chip.dataset.idx = i;
+    chip.onclick = () => addToSentence(w, i, chip);
+    parts.appendChild(chip);
+  });
+  const area = document.getElementById('sbArea');
+  area.innerHTML = '';
+  const ph = document.createElement('span');
+  ph.className = 'placeholder-text';
+  ph.id = 'sbPlaceholder';
+  if (sbPlaced.length === 0) { ph.textContent = 'Click words above to build your sentence...'; area.appendChild(ph); }
+  sbPlaced.forEach(key => {
+    const [word] = key.split('_');
+    const chip = document.createElement('div');
+    chip.className = 'sent-chip';
+    chip.textContent = word;
+    chip.onclick = () => removeFromSentence(key, chip);
+    area.appendChild(chip);
+  });
+  document.getElementById('sbFeedback').style.display = 'none';
+  document.getElementById('sbNext').style.display = 'none';
+}
+function addToSentence(word, idx, chip) {
+  const key = word + '_' + idx;
+  if (sbPlaced.includes(key)) return;
+  sbPlaced.push(key);
+  chip.classList.add('placed');
+  renderSentenceBuilder();
+}
+function removeFromSentence(key, chip) {
+  sbPlaced = sbPlaced.filter(k => k !== key);
+  renderSentenceBuilder();
+}
+function checkSentence() {
+  const placed = sbPlaced.map(k => k.split('_')[0]);
+  const correct = sentences[sbIndex].answer;
+  const fb = document.getElementById('sbFeedback');
+  fb.style.display = 'block';
+  if (JSON.stringify(placed) === JSON.stringify(correct)) {
+    fb.textContent = '🎉 Correct sentence!';
+    fb.style.color = 'var(--green-mid)';
+    addScore('sentence_' + sbIndex, 5);
+    if (sbIndex < sentences.length - 1) document.getElementById('sbNext').style.display = 'inline-flex';
+  } else {
+    fb.textContent = '❌ Not quite right. Check the word order and try again!';
+    fb.style.color = 'var(--accent-red)';
+  }
+}
+function resetSentence() { sbPlaced = []; renderSentenceBuilder(); }
+function nextSentence() { sbIndex++; if (sbIndex < sentences.length) { loadSentence(); } }
+loadSentence();
+
+// ===== WORD COUNTER =====
+function countWords(id, countId) {
+  const text = document.getElementById(id).value.trim();
+  const words = text === '' ? 0 : text.split(/\s+/).length;
+  document.getElementById(countId).textContent = words;
+}
+
+// ===== PHRASE COPY =====
+function copyPhrase(el) {
+  el.classList.add('copied');
+  setTimeout(() => el.classList.remove('copied'), 1200);
+}
+
+// ===== CELEBRATION =====
+function showCelebration() {
+  document.getElementById('finalScore').textContent = totalScore;
+  const cel = document.getElementById('celebration');
+  cel.classList.add('show');
+  cel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+// ===== PROGRESS BAR ANIMATION =====
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = (scrolled / total) * 100;
+  // blend with score progress
+  const scorePct = Math.min(100, (totalScore / 120) * 100);
+  const combined = Math.max(pct * 0.3, scorePct);
+  document.getElementById('progressFill').style.width = Math.min(100, combined) + '%';
+});
+</script>
+</body>
+</html>
